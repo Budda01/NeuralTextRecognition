@@ -4,6 +4,7 @@ import os
 import numpy as np
 import cv2
 from tensorflow.keras.models import load_model
+import re
 
 def clear_folder(folder_path):
     """Удаляет все файлы и папки в указанной директории."""
@@ -46,10 +47,38 @@ def write_results_to_file(results, file_name="RESULT.txt"):
     with open(file_name, "w", encoding="utf-8") as file:
         file.writelines(results)
 
+def fix_text_file(file_path):
+    with open(file_path, 'r', encoding='utf-8') as f:
+        text = f.read()
+    letters = [c for c in text if c.isalpha()]
+    if not letters:
+        return
+
+    upper_count = sum(1 for c in letters if c.isupper())
+    lower_count = sum(1 for c in letters if c.islower())
+
+    if upper_count > lower_count:
+        corrected_text = text.upper()
+    else:
+        text = text.lower()
+        sentences = re.split(r'([.!?]["\']?\s*)', text)
+        corrected = ''
+        capitalize_next = True
+
+        for part in sentences:
+            if capitalize_next:
+                corrected += part.capitalize()
+            else:
+                corrected += part
+            capitalize_next = bool(re.match(r'[.!?]["\']?\s*$', part))
+        corrected_text = corrected
+    with open(file_path, 'w', encoding='utf-8') as f:
+        f.write(corrected_text)
+
 
 if __name__ == "__main__":
     model_path = "alphabet_recognition_model.h5"
-    len_char = image_divider('test_image/img.png')
+    len_char = image_divider('test_image/img_10.png')
     custom_test_folder = "images"
     print(f"Обработано символов: {len_char}")
     process_images_in_folder(custom_test_folder)
@@ -89,7 +118,10 @@ if __name__ == "__main__":
     for i in range(len(results)):
         results[i] = results[i].replace('ьI', 'ы')
         results[i] = results[i].replace('ЬI', 'ы')
+        results[i] = results[i].replace('Е..', 'Ё')
+        results[i] = results[i].replace('е..', 'ё')
 
 
     write_results_to_file(results)
     clear_folder(custom_test_folder)
+    fix_text_file("RESULT.txt")

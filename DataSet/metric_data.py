@@ -24,7 +24,7 @@ def generate_letters_with_fonts(font_files, output_dir, font_size, image_size=(9
         draw = ImageDraw.Draw(image)
 
         # Adjust font size dynamically
-        adjusted_font_size = font_size + 6 # Increase the base font size
+        adjusted_font_size = font_size + 25 # Increase the base font size
 
         # Calculate rows and columns for the grid
         repeat_count = 2  # Repeat the character 5 times per font

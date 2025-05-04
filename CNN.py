@@ -83,7 +83,7 @@ else:
     model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
     print(model.summary())
-    history = model.fit(x_train, y_train, epochs=15, batch_size=64, validation_data=(x_test, y_test))
+    history = model.fit(x_train, y_train, epochs=12, batch_size=64, validation_data=(x_test, y_test))
     # Сохранение модели
     model.save(model_path)
     print(f"Модель сохранена в {model_path}")

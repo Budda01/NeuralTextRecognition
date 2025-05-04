@@ -57,10 +57,7 @@ def find_lines(binary):
     Определяет строки текста на бинаризованном изображении.
     """
     projection = np.sum(binary == 255, axis=1)
-    projection1 = np.sum(binary == 255, axis=0)
     mean_value = np.mean(projection)
-    plt.plot(projection1)
-    plt.show()
 
     lines = []
     in_region = False
