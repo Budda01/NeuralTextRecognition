@@ -85,10 +85,9 @@ def fix_text_file(file_path):
     with open(file_path, 'w', encoding='utf-8') as f:
         f.write(corrected_text)
 
-# === Главная логика ===
 if __name__ == "__main__":
     # Разделение и предобработка
-    len_char = image_divider('test_image/img_5.png')
+    len_char = image_divider('test_image/img_23.png')
     print(f"Обработано символов: {len_char}")
     process_images_in_folder(CHAR_IMAGE_DIR)
 
@@ -114,6 +113,9 @@ if __name__ == "__main__":
                 results.append(text + " ")
                 current_sequence = []
             elif dark_count == 2:
+                # Удаляем пробел перед переходом на новую строку, если он есть
+                if results and results[-1].endswith(" "):
+                    results[-1] = results[-1][:-1]
                 results.append("\n")
                 dark_count = 0
         else:
@@ -136,5 +138,5 @@ if __name__ == "__main__":
 
     write_results_to_file(results)
     clear_folder(CHAR_IMAGE_DIR)
-    fix_text_file(RESULT_FILE)
+    # fix_text_file(RESULT_FILE)
     print(f"Результаты сохранены в {RESULT_FILE}")

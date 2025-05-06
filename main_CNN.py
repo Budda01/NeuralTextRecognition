@@ -78,7 +78,7 @@ def fix_text_file(file_path):
 
 if __name__ == "__main__":
     model_path = "CNN/alphabet_recognition_model.h5"
-    len_char = image_divider('test_image/img_1.png')
+    len_char = image_divider('test_image/img_23.png')
     custom_test_folder = "images"
     print(f"Обработано символов: {len_char}")
     process_images_in_folder(custom_test_folder)
@@ -124,4 +124,4 @@ if __name__ == "__main__":
 
     write_results_to_file(results)
     clear_folder(custom_test_folder)
-    fix_text_file("RESULT_CNN.txt")
+    # fix_text_file("RESULT_CNN.txt")

@@ -4,7 +4,7 @@ import cv2
 import os
 
 # Пути
-image_path = 'test_image/img_12.png'
+image_path = 'test_image/img_23.png'
 temp_path = 'temp_processed.png'
 
 # Обработка изображения

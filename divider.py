@@ -63,7 +63,7 @@ def find_lines(binary):
     in_region = False
     start_y = 0
     for y, value in enumerate(projection):
-        if value > 0.6 * mean_value and not in_region:
+        if value > 0.7 * mean_value and not in_region:
             in_region = True
             start_y = y
         elif value <= 0.3 * mean_value and in_region:
@@ -148,6 +148,7 @@ def image_divider(file_path):
     os.makedirs(output_folder, exist_ok=True)
     output_text_file = "output_symbols.txt"
     image = cv2.imread(file_path, cv2.IMREAD_GRAYSCALE)
+    image = cv2.resize(image, None, fx=1.5, fy=1.5, interpolation=cv2.INTER_CUBIC)
     binary = improved_binarizer(image)
     height, width = binary.shape
     visited = np.zeros((height, width), dtype=bool)
