@@ -24,7 +24,7 @@ def preprocess_image(image_path):
         return None
 
 # Папка, содержащая изображения
-data_folder = 'DataSet/output_imag'
+data_folder = '../DataSet/output_imag'
 
 # Определяем количество классов по количеству папок
 folders = sorted([folder for folder in os.listdir(data_folder) if os.path.isdir(os.path.join(data_folder, folder))])

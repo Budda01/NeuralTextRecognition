@@ -58,4 +58,4 @@ def predict_from_folder(folder_path):
 
 # === Пример
 if __name__ == "__main__":
-    predict_from_folder("../DataSet/WordGen/sample")
+    predict_from_folder("sample")

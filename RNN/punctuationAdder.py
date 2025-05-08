@@ -2,8 +2,8 @@ import random
 import re
 
 # Пути к файлам
-input_filename = "RUS1.txt"
-output_filename = "RUS2.txt"
+input_filename = "new.txt"
+output_filename = "new.txt"
 
 # Разрешённые символы: А–Я, а–я, Ё, ё
 allowed_chars = re.compile(r'^[А-Яа-яЁё]+$')
